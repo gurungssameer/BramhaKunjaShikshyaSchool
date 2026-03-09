@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bramha Kunja Shikshya Sadan</title>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/small-logo.png">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Open+Sans&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        .step-circle {
+            width: 70px;
+            height: 70px;
+            font-size: 20px;
+            transition: 0.3s ease;
+        }
+        
+        .step-item:hover .step-circle {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .step-text {
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Horizontal line (Desktop) */
+        .step-line {
+            position: absolute;
+            top: 35px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255,255,255,0.4);
+            z-index: 0;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+        
+            .steps-wrapper {
+                flex-direction: column !important;
+                align-items: center !important;
+            }
+        
+            .step-item {
+                width: 100% !important;
+                margin-bottom: 40px;
+            }
+        
+            .step-line {
+                display: none;
+            }
+        }
+        </style>
+        <!-- CSS -->
+        <style>
+        #admissionPopup {
+            position: fixed;
+            bottom: -400px;
+            right: 20px;
+            width: 35%;
+            max-width: 400px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+            overflow: hidden;
+            transition: bottom 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+        
+        #admissionPopup.show {
+            bottom: 20px;
+            opacity: 1;
+        }
+        
+        #admissionPopup .popup-content {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        #admissionPopup img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .popup-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 5px;
+        }
+        
+        .popup-buttons a {
+            flex: 1;
+            background: #FFAC00;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .popup-buttons a:hover {
+            background: #0056b3;
+        }
+        
+        .popup-buttons button {
+            background: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 10px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .popup-buttons button:hover {
+            background: #a71d2a;
+        }
+        
+        @media (max-width: 768px) {
+            #admissionPopup {
+                width: 90%;
+                right: 5%;
+            }
+        }
+        </style>
+               <style>
+               .close-btn {
+                   background: transparent;
+                   border: none;
+                   font-size: 1.5rem;
+                   cursor: pointer;
+                   position: absolute;
+                   top: 10px;
+                   right: 10px;
+                   transition: transform 0.2s;
+               }
+               .close-btn:hover {
+                   transform: rotate(90deg);
+                   color: red;
+               }
+               </style> 
+</head>
+
+<body>
+    <!-- Popup HTML -->
+<div id="admissionPopup" style="display:none;">
+    <div class="popup-content">
+        <img src="img/admission.jpg" alt="Admission Open">
+        <div class="popup-buttons">
+            <a href="admission.html"
+               target="_blank" id="admissionBtn">Apply Now</a>
+               <button id="closePopup" class="close-btn">✖</button>
+       </div>
+    </div>
+</div>
+<!-- JS -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const popup = document.getElementById("admissionPopup");
+    
+        // Always show popup
+        popup.style.display = "block";
+        setTimeout(() => popup.classList.add("show"), 100);
+    
+        // Close button
+        document.getElementById("closePopup").addEventListener("click", function() {
+            popup.classList.remove("show");
+            setTimeout(() => popup.style.display = "none", 500);
+            // Removed localStorage so popup shows again on reload
+        });
+    
+        // Apply button
+        document.getElementById("admissionBtn").addEventListener("click", function() {
+            // Removed localStorage so popup shows again on reload
+        });
+    });
+    </script>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-secondary top-bar wow fadeIn" data-wow-delay="0.1s">
+        <div class="row align-items-center h-100">
+            <div class="col-lg-4 text-center text-lg-start">
+                <a href="index.html">
+                    <img src="img/logo_bramha.png" alt="Charitize Logo" class="logo">
+
+                    <!-- <h1 class="display-5 text-primary m-0 c-b">Charitize</h1> -->
+                </a>
+            </div>
+            <div class="col-lg-8 d-none d-lg-block">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="d-flex justify-content-end">
+                            <div class="flex-shrink-0 btn-square bg-primary">
+                                <i class="fa fa-phone-alt text-dark"></i>
+                            </div>
+                            <div class="ms-2">
+                                <h6 class="text-primary mb-0">Call Us</h6>
+                                <span class="text-white">+
+                                    01-4451551</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="d-flex justify-content-end">
+                            <div class="flex-shrink-0 btn-square bg-primary">
+                                <i class="fa fa-envelope-open text-dark"></i>
+                            </div>
+                            <div class="ms-2">
+                                <h6 class="text-primary mb-0">Mail Us</h6>
+                                <span class="text-white">info@BramhaKunjaSchool.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="d-flex justify-content-end">
+                            <div class="flex-shrink-0 btn-square bg-primary">
+                                <i class="fa fa-map-marker-alt text-dark"></i>
+                            </div>
+                            <div class="ms-2">
+                                <h6 class="text-primary mb-0">Address</h6>
+                                <span class="text-white">Bramhakhel,Kathmandu</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-secondary px-0 wow fadeIn" data-wow-delay="0.1s">
+        <div class="nav-bar">
+            <nav class="navbar navbar-expand-lg bg-primary navbar-dark px-4 py-lg-0">
+                <h4 class="d-lg-none m-0">Menu</h4>
+                <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav me-auto">
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="service.html" class="nav-item nav-link">Service</a>
+                        <div class="nav-item dropdown">
+                            <a href="#!" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu bg-light m-0">
+                                <a href="event.html" class="dropdown-item">Event</a>
+                                <a href="feature.html" class="dropdown-item">Feature</a>
+                                <a href="team.html" class="dropdown-item">News & Events</a>
+                                <a href="msg.html" class="dropdown-item ">MESSAGE FROM Principal</a>
+
+                                <a href="404.html" class="dropdown-item active">Gallery</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#!" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
+                            <div class="dropdown-menu bg-light m-0">
+                                <a href="Our_Offer/acedemics.html" class="dropdown-item">Academic</a>
+                                <a href="Our_Offer/sports-games.html" class="dropdown-item">Sports</a>
+                                <a href="Our_Offer/arts-creativity.html" class="dropdown-item">Culture</a>
+                                <a href="Our_Offer/counseling.html" class="dropdown-item">Counseling</a>
+                                <a href="Our_Offer/primary-education.html" class="dropdown-item">Extra-Curricular</a>
+                                <a href="Our_Offer/QualifiedTeacher.html" class="dropdown-item">Qualified Teacher</a>
+                                <a href="Our_Offer/science-labs.html" class="dropdown-item">Science Labs</a>
+                                <a href="Our_Offer/transportation.html" class="dropdown-item">transportation</a>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    </div>
+                    <div class="d-none d-lg-flex ms-auto">
+                        <a class="btn btn-square btn-dark ms-2" href="#!"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-dark ms-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-dark ms-2" href="#!"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container text-center py-4">
+            <h1 class="display-3 animated slideInDown">Our Gallerys</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a href="#!">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#!">Pages</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">404 Page</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Video Start -->
+    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-lg-11">
+                    <div class="h-100 py-5 d-flex align-items-center">
+                        <button type="button" class="btn-play" data-bs-toggle="modal"
+                            data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
+                            <span></span>
+                        </button>
+                        <h3 class="ms-5 mb-0">Together, we can build a world where everyone has the chance to thrive.
+                        </h3>
+                    </div>
+                </div>
+                <div class="d-none d-lg-block col-lg-1">
+                    <div class="h-100 w-100 bg-secondary d-flex align-items-center justify-content-center">
+                        <span class="text-white" style="transform: rotate(-90deg);">Scroll Down</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Video End -->
+
+
+    <!-- Video Modal Start -->
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-0">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Youtube Video</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- 16:9 aspect ratio -->
+                    <div class="ratio ratio-16x9">
+                        <iframe class="embed-responsive-item" src="" id="video" allowfullscreen
+                            allowscriptaccess="always" allow="autoplay"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Video Modal End -->
+
+    <!-- Gallery Start -->
+    <div class="container-fluid py-5 bg-light">
+        <div class="container">
+
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Our School Gallery</h2>
+                <p class="text-muted">Capturing moments of learning, creativity, and success.</p>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- Image Item1 -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-1.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-2.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-3.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-4.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-5.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-6.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-7.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-8.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <!-- Image Item2 -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-9.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-10.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-11.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-12.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-13.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-14.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-15.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/g-16.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                
+                <!-- Image Item3 -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/17.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/18.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/19.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/20.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/21.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/22.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/23.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/24.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                
+                <!-- Image Item4 -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/25.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/26.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/27.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/28.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/29.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/30.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/31.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/32.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+
+                <!-- Image Item4 -->
+       
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/34.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/35.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/36.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/38.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/39.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/40.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/31.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="overflow-hidden rounded shadow-sm">
+                        <img src="gallerys/32.jpg" class="img-fluid w-100"
+                            style="height:220px; object-fit:cover; transition:0.4s;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+    <!-- Gallery End -->
+
+
+    <!-- 404 Start -->
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <i class="bi bi-exclamation-triangle display-1 text-primary"></i>
+                    <h1 class="display-1">404</h1>
+                    <h1 class="mb-4">Page Not Found</h1>
+                    <p class="mb-4">We’re sorry, the page you have looked for does not exist in our website! Maybe go to
+                        our home page or try to use a search?</p>
+                    <a class="btn btn-primary py-3 px-4" href="index.html">Go Back To Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 404 End -->
+
+
+    <!-- Newsletter Start -->
+    <div class="container-fluid bg-primary py-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 text-center text-white wow fadeIn" data-wow-delay="0.5s">
+    
+                    <h1 class="display-5 mb-5 text-white fw-bold">Admission Process</h1>
+    
+                    <div class="d-flex justify-content-between align-items-center flex-wrap position-relative">
+    
+                        <!-- Line -->
+                        <div class="position-absolute top-50 start-0 w-100 translate-middle-y"
+                             style="height:2px; background:rgba(255,255,255,0.4); z-index:0;"></div>
+    
+                        <!-- Step 1 -->
+                        <div class="text-center position-relative step-item" style="z-index:1; width:18%;">
+                            <div class="bg-white text-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center step-circle">
+                                <i class="bi bi-pencil-square fs-4"></i>
+                            </div>
+                            <p class="mb-0 fw-semibold step-text">Apply</p>
+                        </div>
+    
+                        <!-- Step 2 -->
+                        <div class="text-center position-relative step-item" style="z-index:1; width:18%;">
+                            <div class="bg-white text-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center step-circle">
+                                <i class="bi bi-list-check fs-4"></i>
+                            </div>
+                            <p class="mb-0 fw-semibold step-text">Short Listing</p>
+                        </div>
+    
+                        <!-- Step 3 -->
+                        <div class="text-center position-relative step-item" style="z-index:1; width:18%;">
+                            <div class="bg-white text-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center step-circle">
+                                <i class="bi bi-journal-text fs-4"></i>
+                            </div>
+                            <p class="mb-0 fw-semibold step-text">Exam / Interviews</p>
+                        </div>
+    
+                        <!-- Step 4 -->
+                        <div class="text-center position-relative step-item" style="z-index:1; width:18%;">
+                            <div class="bg-white text-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center step-circle">
+                                <i class="bi bi-check-circle fs-4"></i>
+                            </div>
+                            <p class="mb-0 fw-semibold step-text">Selection</p>
+                        </div>
+    
+                        <!-- Step 5 -->
+                        <div class="text-center position-relative step-item" style="z-index:1; width:18%;">
+                            <a href="admission.html" class="text-decoration-none text-white">
+                                <div class="bg-warning text-dark rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center step-circle">
+                                    <i class="bi bi-emoji-smile fs-4"></i>
+                                </div>
+                                <p class="mb-0 fw-semibold step-text">Welcome</p>
+                            </a>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Newsletter End -->
+    <!-- Footer Start -->
+    <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row g-5 py-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Our Office</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Bramhakhel, Kathmandu, Nepal</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+977 01 2345678</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@bramhakunjaschool.edu.np</p>
+                    <div class="d-flex pt-3">
+                        <a class="btn btn-square btn-primary me-2" href="#!"><i class="fab fa-x-twitter"></i></a>
+                        <a class="btn btn-square btn-primary me-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-primary me-2" href="#!"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-primary me-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="#!">About Us</a>
+                    <a class="btn btn-link" href="#!">Contact Us</a>
+                    <a class="btn btn-link" href="#!">Our Programs</a>
+                    <a class="btn btn-link" href="#!">Admission</a>
+                    <a class="btn btn-link" href="#!">Support</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">School Hours</h4>
+                    <p class="mb-1">Monday - Friday</p>
+                    <h6 class="text-light">08:00 am - 03:00 pm</h6>
+                    <p class="mb-1">Sunday</p>
+                    <h6 class="text-light">08:00 am - 12:00 pm</h6>
+                    <p class="mb-1">Saturday</p>
+                    <h6 class="text-light">Closed</h6>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Gallery</h4>
+                    <div class="row g-2">
+                        <div class="col-4">
+                            <img class="img-fluid w-100" src="img/gn-1.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid w-100" src="img/gn-2.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid w-100" src="img/gn-3.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid w-100" src="img/gn-4.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid w-100" src="img/gn-5.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid w-100" src="img/gn-6.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright pt-5">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="fw-semi-bold" href="#!">Bramhakunja School</a>, All Rights Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <!-- Required by HTML Codex license: do not remove without purchase -->
+                        Designed By <a class="fw-semi-bold" href="https://htmlcodex.com">HTML Codex</a>.
+                        Distributed by <a class="fw-semi-bold" href="https://themewagon.com">ThemeWagon</a>.
+                        | Developed By <a class="fw-semi-bold" href="#">Sameer Gurung</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#!" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- Popup HTML --> 
+    <div id="admissionPopup" style="display:none;">
+        <div class="popup-content">
+            <img src="admission.jpg" alt="Admission Open">
+            <div class="popup-buttons">
+                <a href="admission.html"
+                   target="_blank" id="admissionBtn">Apply Now</a>
+                <button id="closePopup">✖</button>
+            </div>
+        </div>
+    </div>
+    <!-- JS -->
+    <script>
+    // Popup End Date (Nepali 2087 Bhadra 1 ≈ 2030-08-17)
+    const popupEndDate = new Date("2030-08-17");
+    const popupKey = "admissionPopupDone";
+    
+    function showPopup() {
+        if (localStorage.getItem(popupKey)) return; // already clicked/closed
+        const today = new Date();
+        if (today > popupEndDate) return; // expired
+        const popup = document.getElementById("admissionPopup");
+        popup.style.display = "block";
+        setTimeout(() => popup.classList.add("show"), 100); // slide-up + fade-in
+    }
+    
+    // Close button
+    document.getElementById("closePopup").addEventListener("click", function() {
+        const popup = document.getElementById("admissionPopup");
+        popup.classList.remove("show");
+        setTimeout(() => popup.style.display = "none", 500); // hide after animation
+        localStorage.setItem(popupKey, "true");
+    });
+    
+    // Apply button
+    document.getElementById("admissionBtn").addEventListener("click", function() {
+        localStorage.setItem(popupKey, "true");
+    });
+    
+    window.onload = showPopup;
+    </script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
